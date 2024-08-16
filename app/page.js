@@ -56,6 +56,29 @@ export default function Home() {
                 </Grid>
                 <Grid items xs={12} md={4}>
                   <Typography variant="h6">
+                    Smart Flashcards
+                  </Typography>
+                  <Typography>
+                    {''}
+                    Our AI intelligently breaks down your text into concise flashcards, perfect for studying
+                  </Typography>
+                </Grid>
+                <Grid items xs={12} md={4}>
+                  <Typography variant="h6">
+                    Accessibile Anywhere
+                  </Typography>
+                  <Typography>
+                    {''}
+                    Access your Flashcrads from any device, at any time, anywhere. Study on the go with ease
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+            <Box sx ={{my: 6, textAlign:'center'}}>
+              <Typography variant="h4">Pricing</Typography>
+              <Grid contained spacing={4}>
+                <Grid items xs={12} md={4}>
+                  <Typography variant="h6">
                     Easy Text Input
                   </Typography>
                   <Typography>
@@ -65,11 +88,20 @@ export default function Home() {
                 </Grid>
                 <Grid items xs={12} md={4}>
                   <Typography variant="h6">
-                    Easy Text Input
+                    Smart Flashcards
                   </Typography>
                   <Typography>
                     {''}
-                    Simply input your text and let our software do the rest. Creating flashcards has never been easier
+                    Our AI intelligently breaks down your text into concise flashcards, perfect for studying
+                  </Typography>
+                </Grid>
+                <Grid items xs={12} md={4}>
+                  <Typography variant="h6">
+                    Accessibile Anywhere
+                  </Typography>
+                  <Typography>
+                    {''}
+                    Access your Flashcrads from any device, at any time, anywhere. Study on the go with ease
                   </Typography>
                 </Grid>
               </Grid>
