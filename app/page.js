@@ -80,7 +80,7 @@ export default function Home() {
 
       <Box sx={{ my: 6, textAlign: 'center', py: 4, backgroundColor: 'primary.main', color: 'white' }}>
         <Typography variant="h4" gutterBottom>Ready to Get Started?</Typography>
-        <Button variant="contained" color="secondary" size="large">
+        <Button variant="contained" color="secondary" size="large" gutterBottom>
           Create Your First Flashcard
         </Button>
       </Box>
