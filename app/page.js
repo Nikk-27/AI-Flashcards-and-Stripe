@@ -7,7 +7,7 @@ import { School, FlashOn, Devices } from '@mui/icons-material';
 
 export default function Home() {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="100vw">
       <Head>
         <title>Flashcard SaaS</title>
         <meta name="description" content="Create flashcards from your text" />
@@ -19,8 +19,8 @@ export default function Home() {
           </Typography>
           <SignedOut>
             <Box>
-              <Button color="inherit">Login</Button>
-              <Button color="inherit">Sign Up</Button>
+              <Button color="inherit" href="/sign-in">Login</Button>
+              <Button color="inherit" href="/sign-up">Sign Up</Button>
             </Box>
           </SignedOut>
           <SignedIn>
@@ -33,11 +33,11 @@ export default function Home() {
         sx={{
           textAlign: 'center',
           my: 4,
-          backgroundImage: 'url(/path/to/your/image.jpg)',
+          //backgroundImage: 'url(btn.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           py: 10,
-          color: 'white',
+          color: 'black',
         }}
       >
         <Typography variant="h2" gutterBottom>Welcome to Flashcard SaaS</Typography>

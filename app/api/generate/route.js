@@ -1,5 +1,7 @@
-import {NextResponse} from 'next/server'
-import OpenAI from 'openai' 
+import { NextResponse } from 'next/server';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const systemPrompt = `
 Task: Create flashcards
@@ -21,30 +23,54 @@ Examples:
       Answer: Chlorophyll helps in the absorption of sunlight, which is necessary for photosynthesis.
 Instructions: Use the provided content to generate flashcards. Ensure that each flashcard has a clear and concise question and answer.
 
-Return in the following JSON format
+Return in the following JSON format:
 {
-    "flashcards":[{
+    "flashcards": [{
         "front": str,
         "back": str,
     }]
 }
+
+Only generate 10 Flashcards
 `;
 
 export async function POST(req) {
-    const openai = OpenAI();
     const data = await req.text();
 
-    const completion = await openai.chat.completion.create({
-        messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: data },
-        ],
-        model: 'gpt-4',
-        response_format: 'json',
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            contents: [{
+                parts: [{
+                    text: `${systemPrompt}\n\n${data}`
+                }]
+            }]
+        }),
     });
 
-    const flashcards = JSON.parse(completion.choices[0].message.content);
+    if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+        throw new Error('Failed to generate flashcards');
+    }
 
-    return NextResponse.json(flashcards.flashcard);
+    const result = await response.json();
+   
+
+  
+    const content = result.candidates[0]?.content?.parts[0]?.text || '';
+    const cleanedText = content.replace(/```json\n|\n```/g, '');
+
+    let flashcards;
+    try {
+        flashcards = JSON.parse(cleanedText);
+    } catch (error) {
+        console.error('Error parsing JSON:', error);
+        flashcards = { flashcards: [] };
+    }
+
+    return NextResponse.json(flashcards);
 }
-
